@@ -4,7 +4,7 @@ public class Program{
         var name = args[0];
         var price = double.Parse(args[1]);
 
-        var product = new Product(name, price, "White");
+        var product = new Product(name, price, "White"); //Positional Construction
         Console.Write(" -> ");
         Console.WriteLine(product);
 
@@ -19,6 +19,9 @@ public class Program{
         var redProduct = product with { Color = "Red" };
         Console.Write(" -> ");
         Console.WriteLine(redProduct);
+
+        var (productName, productPrice, productColor) = product; //Positional Deconstruction
+        Console.WriteLine($"Name: {productName}, Price: {productPrice}, Color:{productColor}");
 
     }
 }
