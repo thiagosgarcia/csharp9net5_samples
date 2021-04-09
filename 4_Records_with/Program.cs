@@ -4,7 +4,7 @@ public class Program{
         var name = args[0];
         var price = double.Parse(args[1]);
 
-        var product = new Product(name, price, "White"); //Positional Construction
+        Product product = new (name, price, "White"); //Positional Construction
         Console.Write(" -> ");
         Console.WriteLine(product);
 

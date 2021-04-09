@@ -99,11 +99,11 @@ namespace _6_Bonus1_CancellationTokenDemo.Controllers
             var linkedToken = CancellationTokenSource.CreateLinkedTokenSource(cts.Token, cancellationToken); //Linking both
             var resultTask = client.GetStringAsync("https://localhost:5001/Slow/Fixed", linkedToken.Token);
             
-            if(!Task.WaitAll(new Task[]{ resultTask }, 4000, linkedToken.Token)) //Example of how to cancel both tokens regardless other conditions
-            {
-                Console.WriteLine("Timeout!");
-                linkedToken.Cancel();
-            }
+            // if(!Task.WaitAll(new Task[]{ resultTask }, 1000, linkedToken.Token)) //Example of how to cancel both tokens regardless other conditions
+            // {
+            //     Console.WriteLine("Timeout!");
+            //     linkedToken.Cancel();
+            // }
 
             return await resultTask;
         }
