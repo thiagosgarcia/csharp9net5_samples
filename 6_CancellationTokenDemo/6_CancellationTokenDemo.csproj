@@ -2,10 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <RootNamespace>_6_Bonus1_CancellationTokenDemo</RootNamespace>
+    <RootNamespace>_6_CancellationTokenDemo</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
   </ItemGroup>
 

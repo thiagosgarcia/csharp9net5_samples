@@ -17,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "_6_Bonus1_CancellationTokenDemo": {
+    "_6_CancellationTokenDemo": {
       "commandName": "Project",
       "dotnetRunMessages": "true",
       "launchBrowser": true,

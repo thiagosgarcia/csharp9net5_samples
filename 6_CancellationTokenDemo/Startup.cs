@@ -12,7 +12,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 
-namespace _6_Bonus1_CancellationTokenDemo
+namespace _6_CancellationTokenDemo
 {
     public class Startup
     {
@@ -30,7 +30,7 @@ namespace _6_Bonus1_CancellationTokenDemo
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "_6_Bonus1_CancellationTokenDemo", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "_6_CancellationTokenDemo", Version = "v1" });
             });
         }
 
@@ -41,7 +41,7 @@ namespace _6_Bonus1_CancellationTokenDemo
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "_6_Bonus1_CancellationTokenDemo v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "_6_CancellationTokenDemo v1"));
             }
 
             app.UseHttpsRedirection();

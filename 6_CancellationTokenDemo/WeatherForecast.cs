@@ -1,6 +1,6 @@
 using System;
 
-namespace _6_Bonus1_CancellationTokenDemo
+namespace _6_CancellationTokenDemo
 {
     public class WeatherForecast
     {

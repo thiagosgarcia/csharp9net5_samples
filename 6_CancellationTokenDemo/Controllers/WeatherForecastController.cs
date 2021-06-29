@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace _6_Bonus1_CancellationTokenDemo.Controllers
+namespace _6_CancellationTokenDemo.Controllers
 {
     [ApiController]
     [Route("[controller]")]

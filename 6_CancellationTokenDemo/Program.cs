@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace _6_Bonus1_CancellationTokenDemo
+namespace _6_CancellationTokenDemo
 {
     public class Program
     {
