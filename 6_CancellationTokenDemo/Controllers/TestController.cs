@@ -70,6 +70,7 @@ namespace _6_CancellationTokenDemo.Controllers
             return result;
         }
 
+        [HandleTimeout]
         [HttpGet("Example5")]
         public async Task<string> TimeoutPropagation(CancellationToken cancellationToken){ //Inherited CT
             
@@ -78,12 +79,6 @@ namespace _6_CancellationTokenDemo.Controllers
             var cts = new CancellationTokenSource(TimeSpan.FromSeconds(6)); //Timeout CT
             var linkedToken = CancellationTokenSource.CreateLinkedTokenSource(cts.Token, cancellationToken); //Linking both
             var resultTask = client.GetStringAsync("https://localhost:5001/Slow/Fixed", linkedToken.Token);
-            
-            if(!Task.WaitAll(new Task[]{ resultTask }, 4000, linkedToken.Token)) //Example of how to cancel both tokens regardless other conditions
-            {
-                Console.WriteLine("Timeout!");
-                linkedToken.Cancel();
-            }
 
             return await resultTask;
         }

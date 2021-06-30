@@ -13,30 +13,36 @@ namespace _6_CancellationTokenDemo.Controllers
     public class TypeAheadController : ControllerBase
     {
         [HttpGet]
-        public async Task<IEnumerable<string>> Get(string param, CancellationToken cancellationToken)
+        public async Task<IEnumerable<string>> Get(string param, CancellationToken ct)
         {
-            try
-            {
+            try{
                 Console.WriteLine($"Searching for '{param}'...");
-                var text = await System.IO.File.ReadAllTextAsync("names.json", cancellationToken);
+                //Ponto de cancelamento 1
+                var text = await System.IO.File.ReadAllTextAsync("names.json");
 
                 var jsonNames = JsonConvert.DeserializeObject<List<string>>(text);
                 var items = jsonNames.Where(x => string.IsNullOrEmpty(param) || x.ToLower().StartsWith(param.ToLower())).ToList();
-
+                
                 var delay = (double)items.Count / 3;
-                if(delay > 5)
-                    delay = 5;
+                if(delay > 3)
+                    delay = 3;
+                
+                //Ponto de cancelamento 2
+                Console.WriteLine($"Waiting server query {param}... {delay + 1 }s");
+                await Task.Delay(TimeSpan.FromSeconds(1));
+                ct.ThrowIfCancellationRequested();
 
-                Console.WriteLine($"Waiting server query {param}... {delay}s");
-                await Task.Delay(TimeSpan.FromSeconds(delay), cancellationToken);
+                //Ponto de não retorno
+                Console.WriteLine("Atingido ponto de não retorno");
+                await Task.Delay(TimeSpan.FromSeconds(delay), CancellationToken.None);
                 Console.WriteLine($"Returning {param}\n");
                 return items;
-
-            } catch(OperationCanceledException)
+            }catch(OperationCanceledException ex)
             {
-                Console.WriteLine($"CANCELLED! =)\n");
+                Console.WriteLine($"Cancelled! {param}\n");
             }
-            return new List<string>();
+
+            return null;
         }
     }
 }

@@ -1,16 +1,25 @@
 <html>
     <body>
-        <input type="text" id="text" onkeyup="test()" /> 
+        <input type="text" id="text" onkeyup="debounce()" /> 
         <ul name="op" id="list">
             <li>test</li>
         </ul>
         <script>
             var xhr = new XMLHttpRequest();
+            var timeout;
 
-            function test() {
-                if(!!xhr && xhr.readyState != 4){
+            function debounce(){
+                if(!!xhr && xhr.readyState != 4 ){
                     xhr.abort();
                 }
+                if(!!timeout){
+                    clearTimeout(timeout);
+                }
+
+                timeout = setTimeout(()=> test() , 300);
+            }
+
+            function test() {
                 xhr.onreadystatechange = function() {
                     if (this.readyState == 4 && this.status == 200) {
                         var json = JSON.parse(xhr.responseText);
